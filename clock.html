@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="HJa-Studying">
+    <title>时钟</title>
+    <style>
+        /* 清除浏览器默认边距 */
+        *{
+            margin:0;
+            padding:0;
+        }
+        body{
+            height:100vh;
+            display:flex;
+            /* 水平居中 */
+            justify-content:center;
+            /* 垂直居中 */
+            align-items: center;
+            background-color:skyblue;
+            /* 不可选中 */
+            user-select: none;
+        }
+        .clock{
+            display:flex;
+            /* 向上平移 */
+            transform: translateY(-100px);
+        }
+        .clock p{
+            width:95px;
+            font-size:120px;
+            color:whitesmoke;
+            text-align:center;
+            font-weight:900;
+            text-shadow:0px 8px 5px black;
+            /* 倒影向下 */
+            -webkit-box-reflect:below 0 -webkit-linear-gradient(transparent 10%,rgba(0,0,0,.2));
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <p id="1">0</p>
+        <p id="2">0</p>
+        <p id="3">:</p>
+        <p id="4">0</p>
+        <p id="5">0</p>
+        <p id="6">:</p>
+        <p id="7">0</p>
+        <p id="8">0</p>
+    </div>
+    <script>
+        // 通过id获取元素节点
+        function $(id){
+            return  document.getElementById(id);
+        }
+        // 获取小时，分钟，秒
+        function myTime(){
+            let time = new Date()
+            let hh = time.getHours();
+            let mm = time.getMinutes();
+            let ss = time.getSeconds();
+           $("1").innerText = Math.floor(hh/10)
+           $("2").innerText = hh%10
+           $("4").innerText = Math.floor(mm/10)
+           $("5").innerText = mm%10
+           $("7").innerText = Math.floor(ss/10)
+           $("8").innerText = ss%10
+        }
+        // 定时1s循环调用myTime函数
+        setInterval(()=>{
+            myTime()
+        },1000)
+    </script>
+</body>
+</html>
